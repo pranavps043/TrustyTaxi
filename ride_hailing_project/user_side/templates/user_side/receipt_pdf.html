@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Receipt for Ride #{{ ride.id }}</title>
+  <style>
+    body { font-family: Arial,sans-serif; margin: 20px; }
+    h1 { text-align: center; }
+    .info { margin-bottom: 15px; }
+    .info strong { display: inline-block; width: 150px; }
+  </style>
+</head>
+<body>
+  <h1>Ride Receipt</h1>
+  <div class="info"><strong>Ride ID:</strong> {{ ride.id }}</div>
+  <div class="info"><strong>User:</strong> {{ ride.user.email }}</div>
+  <div class="info"><strong>Pickup Location:</strong> {{ ride.pickup }}</div>
+  <div class="info"><strong>Dropoff Location:</strong> {{ ride.dropoff }}</div>
+  <div class="info"><strong>Ride Type:</strong> {{ ride.ride_type|title }}</div>
+  <div class="info"><strong>Status:</strong> {{ ride.status|title }}</div>
+  <div class="info"><strong>Driver:</strong>
+    {% if ride.driver %}
+      {{ ride.driver.name }}
+    {% else %}
+      Not assigned
+    {% endif %}
+  </div>
+  <div class="info"><strong>Booking Time:</strong> {{ ride.booking_time|date:"Y-m-d H:i" }}</div>
+</body>
+</html>

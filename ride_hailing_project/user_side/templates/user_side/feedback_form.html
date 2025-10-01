@@ -1,0 +1,26 @@
+{% extends 'user_side/base_user.html' %}
+{% block title %}Feedback for Ride #{{ ride.id }}{% endblock %}
+
+{% block content %}
+<h2>Feedback for Ride #{{ ride.id }}</h2>
+<form method="post" novalidate>
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  <div class="mb-3">
+    <label for="id_rating" class="form-label">Rating (1 to 5)</label>
+    {{ form.rating }}
+    {% for error in form.rating.errors %}
+      <div class="text-danger">{{ error }}</div>
+    {% endfor %}
+  </div>
+  <div class="mb-3">
+    <label for="id_comment" class="form-label">Comment</label>
+    {{ form.comment }}
+    {% for error in form.comment.errors %}
+      <div class="text-danger">{{ error }}</div>
+    {% endfor %}
+  </div>
+  <button type="submit" class="btn btn-primary">Submit Feedback</button>
+  <a href="{% url 'booking_history' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

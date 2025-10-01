@@ -1,0 +1,30 @@
+{% extends 'admin_side/base_admin.html' %}
+{% block title %}User Feedbacks{% endblock %}
+
+{% block content %}
+<h1>User Feedbacks</h1>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Ride ID</th>
+      <th>User</th>
+      <th>Rating</th>
+      <th>Comment</th>
+      <th>Created At</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for fb in feedbacks %}
+    <tr>
+      <td>{{ fb.ride.id }}</td>
+      <td>{{ fb.user.email }}</td>
+      <td>{{ fb.rating }}</td>
+      <td>{{ fb.comment }}</td>
+      <td>{{ fb.created_at|date:"Y-m-d H:i" }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="5">No feedback available.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

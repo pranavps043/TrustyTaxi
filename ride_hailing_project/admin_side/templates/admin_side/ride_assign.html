@@ -1,0 +1,23 @@
+{% extends 'admin_side/base_admin.html' %}
+{% block title %}Assign Driver to Ride #{{ ride.id }}{% endblock %}
+
+{% block content %}
+<h1>Assign Driver to Ride #{{ ride.id }}</h1>
+<p><strong>Pickup:</strong> {{ ride.pickup }}</p>
+<p><strong>Dropoff:</strong> {{ ride.dropoff }}</p>
+
+<form method="post">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="driver" class="form-label">Select Driver</label>
+    <select class="form-select" id="driver" name="driver" required>
+      <option value="" disabled selected>Select a driver</option>
+      {% for driver in drivers %}
+      <option value="{{ driver.id }}">{{ driver.name }} ({{ driver.status|title }})</option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Assign Driver</button>
+  <a href="{% url 'ride_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

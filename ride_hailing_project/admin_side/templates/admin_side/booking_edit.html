@@ -1,0 +1,35 @@
+{% extends 'admin_side/base_admin.html' %}
+{% block title %}Edit Booking #{{ ride.id }}{% endblock %}
+
+{% block content %}
+<h1>Edit Booking #{{ ride.id }}</h1>
+<form method="post">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="pickup" class="form-label">Pickup Location</label>
+    <input type="text" class="form-control" id="pickup" name="pickup" value="{{ ride.pickup }}" required />
+  </div>
+  <div class="mb-3">
+    <label for="dropoff" class="form-label">Dropoff Location</label>
+    <input type="text" class="form-control" id="dropoff" name="dropoff" value="{{ ride.dropoff }}" required />
+  </div>
+  <div class="mb-3">
+    <label for="ride_type" class="form-label">Ride Type</label>
+    <select class="form-select" id="ride_type" name="ride_type" required>
+      <option value="economy" {% if ride.ride_type == 'economy' %}selected{% endif %}>Economy</option>
+      <option value="luxury" {% if ride.ride_type == 'luxury' %}selected{% endif %}>Luxury</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="status" class="form-label">Status</label>
+    <select class="form-select" id="status" name="status" required>
+      <option value="pending" {% if ride.status == 'pending' %}selected{% endif %}>Pending</option>
+      <option value="assigned" {% if ride.status == 'assigned' %}selected{% endif %}>Assigned</option>
+      <option value="completed" {% if ride.status == 'completed' %}selected{% endif %}>Completed</option>
+      <option value="cancelled" {% if ride.status == 'cancelled' %}selected{% endif %}>Cancelled</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
+  <a href="{% url 'booking_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

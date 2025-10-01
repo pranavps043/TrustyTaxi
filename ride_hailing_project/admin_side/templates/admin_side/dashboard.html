@@ -1,0 +1,40 @@
+{% extends 'admin_side/base_admin.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h1>Dashboard</h1>
+<div class="row">
+  <div class="col-md-3">
+    <div class="card text-white bg-primary mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Total Drivers</h5>
+        <p class="card-text fs-3">{{ total_drivers }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card text-white bg-success mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Approved Drivers</h5>
+        <p class="card-text fs-3">{{ approved_drivers }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card text-white bg-warning mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Total Rides</h5>
+        <p class="card-text fs-3">{{ total_rides }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card text-white bg-danger mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Pending Rides</h5>
+        <p class="card-text fs-3">{{ pending_rides }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
